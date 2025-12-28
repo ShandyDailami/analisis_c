@@ -1,0 +1,65 @@
+name: "Analisis CodeQL C/C++ (Robust)"
+
+on:
+  push:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'cpp' ]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: ${{ matrix.language }}
+
+    - name: Compile Semua File .c (Recursive)
+      run: |
+        # Mengaktifkan fitur pencarian folder dalam (globstar)
+        shopt -s globstar
+        
+        echo "=== MULAI KOMPILASI MANUAL ==="
+        
+        # Cari semua file .c dimanapun berada, lalu compile satu per satu
+        # Kita gunakan loop for agar CodeQL bisa melacak prosesnya
+        count=0
+        for file in **/*.c; do
+          # Cek jika file benar-benar ada (menghindari error jika tidak ada file)
+          [ -e "$file" ] || continue
+          
+          echo "Compiling: $file"
+          # Compile (-c), Matikan warning (-w)
+          # Kita izinkan error individual, tapi catat kalau gagal
+          gcc -c -w "$file" || echo "⚠️ Gagal compile: $file"
+          
+          count=$((count+1))
+        done
+        
+        echo "=== SELESAI ==="
+        echo "Total file yang dicoba: $count"
+        
+        # Jika tidak ada file yang ditemukan, buat error agar kita tahu
+        if [ $count -eq 0 ]; then
+          echo "❌ ERROR: Tidak ditemukan file .c satupun di repository ini!"
+          exit 1
+        fi
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+      with:
+        category: "/language:${{matrix.language}}"
