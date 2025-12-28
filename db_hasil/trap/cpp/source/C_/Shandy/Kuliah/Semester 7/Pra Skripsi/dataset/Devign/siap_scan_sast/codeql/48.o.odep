@@ -1,0 +1,13 @@
+// Current directory: "C:\Shandy\Kuliah\Semester 7\Pra Skripsi\dataset\Devign\siap_scan_sast\codeql"
+// Command: C:\codeql\cpp\tools\win64\extractor.exe --assembler --codeql-assembler-executable "c:\program files\mingw64\x86_64-w64-mingw32\bin\as.exe" -W -o 48.o C:\Users\ASUS\AppData\Local\Temp\cckbAAqm.s
+// Processed command line:
+// Generated for assembler
+TRAP dependencies 1.2
+
+OBJECTS
+fd654bdd1812d27c
+
+
+INPUT_OBJECTS
+4da72e27c242580e
+C:/Shandy/Kuliah/Semester 7/Pra Skripsi/dataset/Devign/siap_scan_sast/codeql/48.o

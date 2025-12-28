@@ -1,0 +1,4 @@
+[E 07:28:47 21380] CodeQL C/C++ Extractor 2.23.5
+[E 07:28:47 21380] Current directory: C:\Shandy\Kuliah\Semester 7\Pra Skripsi\dataset\Devign\siap_scan_sast\codeql
+[E 07:28:47 21380] Command: C:\codeql\cpp\tools\win64\extractor.exe --mimic "c:\program files\mingw64\libexec\gcc\x86_64-w64-mingw32\12.2.0\cc1.exe" -quiet -iprefix "c:\program files\mingw64\bin\../lib/gcc/x86_64-w64-mingw32/12.2.0/" -D_REENTRANT 42.c -quiet -dumpbase 42.c -dumpbase-ext .c -mtune=generic -march=x86-64 -w -o C:\Users\ASUS\AppData\Local\Temp\cckbAAqm.s
+[E 07:28:47 21380] Not a compiler; exiting. Reason: did not produce a meaningful object file

@@ -1,0 +1,22 @@
+[E 07:28:40 6556] CodeQL C/C++ Extractor 2.23.5
+[E 07:28:40 6556] Current directory: C:\Shandy\Kuliah\Semester 7\Pra Skripsi\dataset\Devign\siap_scan_sast\codeql
+[E 07:28:40 6556] Command: C:\codeql\cpp\tools\win64\extractor.exe --mimic "c:\program files\mingw64\libexec\gcc\x86_64-w64-mingw32\12.2.0\cc1.exe" -quiet -iprefix "c:\program files\mingw64\bin\../lib/gcc/x86_64-w64-mingw32/12.2.0/" -D_REENTRANT 0.c -quiet -dumpbase 0.c -dumpbase-ext .c -mtune=generic -march=x86-64 -w -o C:\Users\ASUS\AppData\Local\Temp\cckbAAqm.s
+[E 07:28:41 6556] Not a compiler; exiting. Reason: did not produce a meaningful object file
+stdout was:
+
+stderr was:
+ marker
+Analyzing compilation unit
+Performing interprocedural optimizations
+ <*free_lang_data> <visibility> <build_ssa_passes> <opt_local_passes> <remove_symbols> <targetclone> <free-fnsummary> <emutls>Streaming LTO
+ <whole-program> <fnsummary> <inline> <modref> <free-fnsummary> <single-use>Assembling functions:
+ <simdclone> marker
+Time variable                                   usr           sys          wall           GGC
+ phase setup                        :   0.01 ( 13%)  1331k ( 87%)
+ phase opt and generate             :   0.03 ( 84%)    57k (  4%)
+ tree gimplify                      :   0.01 ( 26%)  1816  (  0%)
+ initialize rtl                     :   0.01 ( 24%)    12k (  1%)
+ TOTAL                              :   0.04         1528k
+
+exited with code 0
+

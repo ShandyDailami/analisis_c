@@ -1,0 +1,4 @@
+[E 07:28:41 5572] CodeQL C/C++ Extractor 2.23.5
+[E 07:28:41 5572] Current directory: C:\Shandy\Kuliah\Semester 7\Pra Skripsi\dataset\Devign\siap_scan_sast\codeql
+[E 07:28:41 5572] Command: C:\codeql\cpp\tools\win64\extractor.exe --assembler --codeql-assembler-executable "c:\program files\mingw64\x86_64-w64-mingw32\bin\as.exe" -W -o 0.o C:\Users\ASUS\AppData\Local\Temp\cckbAAqm.s
+[E 07:28:41 5572] Extractor exited after mimicking assembler

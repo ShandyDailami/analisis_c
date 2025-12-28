@@ -1,0 +1,1158 @@
+[2025-12-28 15:28:37] This is codeql database create db_hasil --language=cpp --command=gcc -c -w *.c
+[2025-12-28 15:28:37] Log file was started late.
+[2025-12-28 15:28:37] [PROGRESS] database create> Initializing database at C:\Shandy\Kuliah\Semester 7\Pra Skripsi\dataset\Devign\siap_scan_sast\codeql\db_hasil.
+[2025-12-28 15:28:37] Running plumbing command: codeql database init --language=cpp --extractor-options-verbosity=1 --qlconfig-file=C:\Shandy\Kuliah\Semester 7\Pra Skripsi\dataset\Devign\siap_scan_sast\codeql\qlconfig.yml --source-root=C:\Shandy\Kuliah\Semester 7\Pra Skripsi\dataset\Devign\siap_scan_sast\codeql --allow-missing-source-root=false --allow-already-existing -- C:\Shandy\Kuliah\Semester 7\Pra Skripsi\dataset\Devign\siap_scan_sast\codeql\db_hasil
+[2025-12-28 15:28:37] Calling plumbing command: codeql resolve languages --extractor-options-verbosity=1 --format=betterjson
+[2025-12-28 15:28:38] [DETAILS] resolve languages> Scanning for [codeql-extractor.yml] from C:\codeql\.codeqlmanifest.json
+[2025-12-28 15:28:38] [DETAILS] resolve languages> Parsing C:\codeql\actions\codeql-extractor.yml.
+[2025-12-28 15:28:38] [DETAILS] resolve languages> Parsing C:\codeql\cpp\codeql-extractor.yml.
+[2025-12-28 15:28:38] [DETAILS] resolve languages> Parsing C:\codeql\csharp\codeql-extractor.yml.
+[2025-12-28 15:28:38] [DETAILS] resolve languages> Parsing C:\codeql\csv\codeql-extractor.yml.
+[2025-12-28 15:28:38] [DETAILS] resolve languages> Parsing C:\codeql\go\codeql-extractor.yml.
+[2025-12-28 15:28:38] [DETAILS] resolve languages> Parsing C:\codeql\html\codeql-extractor.yml.
+[2025-12-28 15:28:38] [DETAILS] resolve languages> Parsing C:\codeql\java\codeql-extractor.yml.
+[2025-12-28 15:28:38] [DETAILS] resolve languages> Parsing C:\codeql\javascript\codeql-extractor.yml.
+[2025-12-28 15:28:38] [DETAILS] resolve languages> Parsing C:\codeql\properties\codeql-extractor.yml.
+[2025-12-28 15:28:38] [DETAILS] resolve languages> Parsing C:\codeql\python\codeql-extractor.yml.
+[2025-12-28 15:28:38] [DETAILS] resolve languages> Parsing C:\codeql\ruby\codeql-extractor.yml.
+[2025-12-28 15:28:38] [DETAILS] resolve languages> Parsing C:\codeql\rust\codeql-extractor.yml.
+[2025-12-28 15:28:38] [DETAILS] resolve languages> Parsing C:\codeql\swift\codeql-extractor.yml.
+[2025-12-28 15:28:38] [DETAILS] resolve languages> Parsing C:\codeql\xml\codeql-extractor.yml.
+[2025-12-28 15:28:38] [DETAILS] resolve languages> Parsing C:\codeql\yaml\codeql-extractor.yml.
+[2025-12-28 15:28:38] Plumbing command codeql resolve languages completed:
+                      {
+                        "aliases" : {
+                          "c" : "cpp",
+                          "c++" : "cpp",
+                          "c-c++" : "cpp",
+                          "c-cpp" : "cpp",
+                          "c#" : "csharp",
+                          "java-kotlin" : "java",
+                          "kotlin" : "java",
+                          "javascript-typescript" : "javascript",
+                          "typescript" : "javascript"
+                        },
+                        "extractors" : {
+                          "actions" : [
+                            {
+                              "extractor_root" : "C:\\codeql\\actions",
+                              "extractor_options" : { }
+                            }
+                          ],
+                          "cpp" : [
+                            {
+                              "extractor_root" : "C:\\codeql\\cpp",
+                              "extractor_options" : {
+                                "scale_timeouts" : {
+                                  "title" : "Value to scale compiler introspection timeouts with",
+                                  "description" : "The extractor attempts to determine what compiler the source code being extracted is compiled with. To this end the extractor makes additional calls to the compiler, some of which are expected to return within a certain fixed time (either 10s or 15s). On some systems that are under high load this time might be too short, and can be scaled up using this option.\n",
+                                  "type" : "string",
+                                  "pattern" : "[0-9]+"
+                                },
+                                "log_verbosity" : {
+                                  "title" : "Verbosity of the extractor logging",
+                                  "description" : "Set the verbosity of the extractor logging to 'quiet' (0), 'normal' (1), 'chatty' (2), or 'noisy' (3). The default is 'normal'.\n",
+                                  "type" : "string",
+                                  "pattern" : "[0-3]"
+                                }
+                              }
+                            }
+                          ],
+                          "csharp" : [
+                            {
+                              "extractor_root" : "C:\\codeql\\csharp",
+                              "extractor_options" : {
+                                "trap" : {
+                                  "title" : "Options pertaining to TRAP.",
+                                  "description" : "Options pertaining to TRAP.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "compression" : {
+                                      "title" : "Controls compression for the TRAP files written by the extractor.",
+                                      "description" : "This option is only intended for use in debugging the extractor. Accepted values are 'brotli' (the default, to write brotli-compressed TRAP), 'gzip', and 'none' (to write uncompressed TRAP).\n",
+                                      "type" : "string",
+                                      "pattern" : "^(none|gzip|brotli)$"
+                                    }
+                                  }
+                                },
+                                "buildless" : {
+                                  "title" : "DEPRECATED - Whether to use buildless (standalone) extraction.",
+                                  "description" : "DEPRECATED: Use `--build-mode none` instead.\nA value indicating, which type of extraction the autobuilder should perform. If 'true', then the standalone extractor will be used, otherwise tracing extraction will be performed. The default is 'false'. Note that buildless extraction will generally yield less accurate analysis results, and should only be used in cases where it is not possible to build the code (for example if it uses inaccessible dependencies).\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                },
+                                "logging" : {
+                                  "title" : "Options pertaining to logging.",
+                                  "description" : "Options pertaining to logging.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "verbosity" : {
+                                      "title" : "Extractor logging verbosity level.",
+                                      "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+                                      "type" : "string",
+                                      "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+                                    }
+                                  }
+                                },
+                                "binlog" : {
+                                  "title" : "Binlog",
+                                  "description" : "[EXPERIMENTAL] The value is a path to the MsBuild binary log file that should be extracted. This option only works when `--build-mode none` is also specified.\n",
+                                  "type" : "array"
+                                }
+                              }
+                            }
+                          ],
+                          "csv" : [
+                            {
+                              "extractor_root" : "C:\\codeql\\csv"
+                            }
+                          ],
+                          "go" : [
+                            {
+                              "extractor_root" : "C:\\codeql\\go",
+                              "extractor_options" : {
+                                "extract_tests" : {
+                                  "title" : "Whether to include Go test files in the CodeQL database.",
+                                  "description" : "A value indicating whether Go test files should be included in the CodeQL database. The default is 'false'.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                },
+                                "extract_vendor_dirs" : {
+                                  "title" : "Whether to include Go vendor directories in the CodeQL database.",
+                                  "description" : "A value indicating whether Go vendor directories should be included in the CodeQL database. The default is 'false'.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                }
+                              }
+                            }
+                          ],
+                          "html" : [
+                            {
+                              "extractor_root" : "C:\\codeql\\html"
+                            }
+                          ],
+                          "java" : [
+                            {
+                              "extractor_root" : "C:\\codeql\\java",
+                              "extractor_options" : {
+                                "exclude" : {
+                                  "title" : "A glob excluding files from analysis.",
+                                  "description" : "A glob indicating what files to exclude from the analysis. This accepts glob patterns that are supported by Java's 'getPathMatcher' implementation.\n",
+                                  "type" : "string"
+                                },
+                                "add_prefer_source" : {
+                                  "title" : "Whether to always prefer source files over class files.",
+                                  "description" : "A value indicating whether source files should be preferred over class files. If set to 'true', the extraction adds '-Xprefer:source' to the javac command line. If set to 'false', the extraction uses the default javac behavior ('-Xprefer:newer'). The default is 'true'.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                },
+                                "buildless" : {
+                                  "title" : "Whether to use buildless (standalone) extraction (experimental).",
+                                  "description" : "A value indicating, which type of extraction the autobuilder should perform. If 'true', then the standalone extractor will be used, otherwise tracing extraction will be performed. The default is 'false'. Note that buildless extraction will generally yield less accurate analysis results, and should only be used in cases where it is not possible to build the code (for example if it uses inaccessible dependencies).\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                },
+                                "buildless_dependency_dir" : {
+                                  "title" : "The path where buildless (standalone) extraction should keep dependencies.",
+                                  "description" : "If set, the buildless (standalone) extractor will store dependencies in this directory.\n",
+                                  "type" : "string"
+                                },
+                                "minimize_dependency_jars" : {
+                                  "title" : "Whether to rewrite and minimize downloaded JAR dependencies (experimental).",
+                                  "description" : "If 'true', JAR dependencies downloaded during extraction will be rewritten to remove unneeded data, such as method bodies. The default is 'false'.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                }
+                              }
+                            }
+                          ],
+                          "javascript" : [
+                            {
+                              "extractor_root" : "C:\\codeql\\javascript",
+                              "extractor_options" : {
+                                "skip_types" : {
+                                  "title" : "Skip type extraction for TypeScript",
+                                  "description" : "Whether to skip the extraction of types in a TypeScript application",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                }
+                              }
+                            }
+                          ],
+                          "properties" : [
+                            {
+                              "extractor_root" : "C:\\codeql\\properties"
+                            }
+                          ],
+                          "python" : [
+                            {
+                              "extractor_root" : "C:\\codeql\\python",
+                              "extractor_options" : {
+                                "logging" : {
+                                  "title" : "Options pertaining to logging.",
+                                  "description" : "Options pertaining to logging.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "verbosity" : {
+                                      "title" : "Python extractor logging verbosity level.",
+                                      "description" : "Controls the level of verbosity of the CodeQL Python extractor.\nThe supported levels are (in order of increasing verbosity):\n\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+                                      "type" : "string",
+                                      "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+                                    }
+                                  }
+                                },
+                                "python_executable_name" : {
+                                  "title" : "Controls the name of the Python executable used by the Python extractor.",
+                                  "description" : "The Python extractor uses platform-dependent heuristics to determine the name of the Python executable to use. Specifying a value for this option overrides the name of the Python executable used by the extractor. Accepted values are py, python and python3. Use this setting with caution, the Python extractor requires Python 3 to run.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(py|python|python3)$"
+                                }
+                              }
+                            }
+                          ],
+                          "ruby" : [
+                            {
+                              "extractor_root" : "C:\\codeql\\ruby",
+                              "extractor_options" : {
+                                "trap" : {
+                                  "title" : "Options pertaining to TRAP.",
+                                  "description" : "Options pertaining to TRAP.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "compression" : {
+                                      "title" : "Controls compression for the TRAP files written by the extractor.",
+                                      "description" : "This option is only intended for use in debugging the extractor. Accepted values are 'gzip' (the default, to write gzip-compressed TRAP) 'zstd' (to write Zstandard-compressed TRAP) and 'none' (to write uncompressed TRAP).\n",
+                                      "type" : "string",
+                                      "pattern" : "^(none|gzip|zstd)$"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ],
+                          "rust" : [
+                            {
+                              "extractor_root" : "C:\\codeql\\rust",
+                              "extractor_options" : {
+                                "trap" : {
+                                  "title" : "Options pertaining to TRAP.",
+                                  "description" : "Options pertaining to TRAP.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "compression" : {
+                                      "title" : "Controls compression for the TRAP files written by the extractor.",
+                                      "description" : "This option is only intended for use in debugging the extractor. Accepted values are 'gzip' (to write gzip-compressed TRAP) 'zstd' (to write Zstandard-compressed TRAP) and 'none' (the default, to write uncompressed TRAP).\n",
+                                      "type" : "string",
+                                      "pattern" : "^(none|gzip|zstd)$"
+                                    }
+                                  }
+                                },
+                                "cargo_target_dir" : {
+                                  "title" : "Directory to use for cargo output files.",
+                                  "description" : "This value is an optional path to use as `CARGO_TARGET_DIR` for the internal cargo commands the extractor uses. Pointing it to a persistent directory may reduce execution time of consecutive extractor runs. By default, a new scratch directory is used for each run.\n",
+                                  "type" : "string"
+                                },
+                                "cargo_target" : {
+                                  "title" : "Target architecture",
+                                  "description" : "Target architecture to use for analysis, analogous to `cargo --target`. By default the host architecture is used.\n",
+                                  "type" : "string"
+                                },
+                                "cargo_features" : {
+                                  "title" : "Cargo features to turn on",
+                                  "description" : "Comma-separated list of features to turn on. By default all features are enabled. If any features are specified, then only those features are enabled. The `default` feature must be explicitly specified if only default features are desired. Can be repeated.\n",
+                                  "type" : "array"
+                                },
+                                "cargo_cfg_overrides" : {
+                                  "title" : "Cargo cfg overrides",
+                                  "description" : "Comma-separated list of cfg settings to enable, or disable if prefixed with `-`. Can be repeated.\n",
+                                  "type" : "array"
+                                },
+                                "logging" : {
+                                  "title" : "Options pertaining to logging.",
+                                  "description" : "Options pertaining to logging.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "verbosity" : {
+                                      "title" : "Extractor logging verbosity level.",
+                                      "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+                                      "type" : "string",
+                                      "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+                                    },
+                                    "flamegraph" : {
+                                      "title" : "[Experimental] File path for write flame graph log",
+                                      "description" : "Collect flame graph data using the `tracing-flame` crate. To render a flame graph or chart, run the `inferno-flamegraph` command. See also: https://crates.io/crates/tracing-flame\n",
+                                      "type" : "string"
+                                    }
+                                  }
+                                },
+                                "extract_dependencies_as_source" : {
+                                  "title" : "Extract dependencies as source code",
+                                  "description" : "Extract the full source code of dependencies instead of only extracting signatures.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                }
+                              }
+                            }
+                          ],
+                          "swift" : [
+                            {
+                              "extractor_root" : "C:\\codeql\\swift"
+                            }
+                          ],
+                          "xml" : [
+                            {
+                              "extractor_root" : "C:\\codeql\\xml"
+                            }
+                          ],
+                          "yaml" : [
+                            {
+                              "extractor_root" : "C:\\codeql\\yaml"
+                            }
+                          ]
+                        }
+                      }
+[2025-12-28 15:28:38] [PROGRESS] database init> Calculating baseline information in C:\Shandy\Kuliah\Semester 7\Pra Skripsi\dataset\Devign\siap_scan_sast\codeql
+[2025-12-28 15:28:38] [SPAMMY] database init> Ignoring the following directories when processing baseline information: .git, .hg, .svn.
+[2025-12-28 15:28:38] [DETAILS] database init> Running command in C:\Shandy\Kuliah\Semester 7\Pra Skripsi\dataset\Devign\siap_scan_sast\codeql: C:\codeql\tools\win64\scc.exe --by-file --exclude-dir .git,.hg,.svn --format json --no-large --no-min .
+[2025-12-28 15:28:39] [SPAMMY] database init> Found 50 baseline files for cpp.
+[2025-12-28 15:28:39] [PROGRESS] database init> Calculated baseline information for languages: cpp (848ms).
+[2025-12-28 15:28:39] [PROGRESS] database init> Resolving extractor cpp.
+[2025-12-28 15:28:39] [DETAILS] database init> Found candidate extractor root for cpp: C:\codeql\cpp.
+[2025-12-28 15:28:39] [PROGRESS] database init> Successfully loaded extractor C/C++ (cpp) from C:\codeql\cpp.
+[2025-12-28 15:28:39] [PROGRESS] database init> Created skeleton CodeQL database at C:\Shandy\Kuliah\Semester 7\Pra Skripsi\dataset\Devign\siap_scan_sast\codeql\db_hasil. This in-progress database is ready to be populated by an extractor.
+[2025-12-28 15:28:39] Plumbing command codeql database init completed.
+[2025-12-28 15:28:39] [PROGRESS] database create> Running build command: [gcc, -c, -w, *.c]
+[2025-12-28 15:28:39] Running plumbing command: codeql database trace-command --working-dir=C:\Shandy\Kuliah\Semester 7\Pra Skripsi\dataset\Devign\siap_scan_sast\codeql --index-traceless-dbs --no-db-cluster -- C:\Shandy\Kuliah\Semester 7\Pra Skripsi\dataset\Devign\siap_scan_sast\codeql\db_hasil gcc -c -w *.c
+[2025-12-28 15:28:39] [PROGRESS] database trace-command> Running command in C:\Shandy\Kuliah\Semester 7\Pra Skripsi\dataset\Devign\siap_scan_sast\codeql: [gcc, -c, -w, *.c]
+[2025-12-28 15:28:41] [build-stderr] 1.c:13:32: error: unknown type name 'NUTContext'
+[2025-12-28 15:28:41] [build-stderr]    13 | static int decode_frame_header(NUTContext *nut, int64_t *pts, int *stream_id,
+[2025-12-28 15:28:41] [build-stderr]       |                                ^~~~~~~~~~
+[2025-12-28 15:28:41] [build-stderr] 10.c:13:32: error: unknown type name 'Monitor'
+[2025-12-28 15:28:41] [build-stderr]    13 | void hmp_block_set_io_throttle(Monitor *mon, const QDict *qdict)
+[2025-12-28 15:28:41] [build-stderr]       |                                ^~~~~~~
+[2025-12-28 15:28:41] [build-stderr] 10.c:13:52: error: unknown type name 'QDict'
+[2025-12-28 15:28:41] [build-stderr]    13 | void hmp_block_set_io_throttle(Monitor *mon, const QDict *qdict)
+[2025-12-28 15:28:41] [build-stderr]       |                                                    ^~~~~
+[2025-12-28 15:28:41] [build-stderr] 11.c:13:23: error: unknown type name 'AVFormatContext'
+[2025-12-28 15:28:41] [build-stderr]    13 | static void read_apic(AVFormatContext *s, AVIOContext *pb, int taglen, char *tag, ID3v2ExtraMeta **extra_meta)
+[2025-12-28 15:28:41] [build-stderr]       |                       ^~~~~~~~~~~~~~~
+[2025-12-28 15:28:41] [build-stderr] 11.c:13:43: error: unknown type name 'AVIOContext'
+[2025-12-28 15:28:41] [build-stderr]    13 | static void read_apic(AVFormatContext *s, AVIOContext *pb, int taglen, char *tag, ID3v2ExtraMeta **extra_meta)
+[2025-12-28 15:28:41] [build-stderr]       |                                           ^~~~~~~~~~~
+[2025-12-28 15:28:41] [build-stderr] 11.c:13:83: error: unknown type name 'ID3v2ExtraMeta'
+[2025-12-28 15:28:41] [build-stderr]    13 | static void read_apic(AVFormatContext *s, AVIOContext *pb, int taglen, char *tag, ID3v2ExtraMeta **extra_meta)
+[2025-12-28 15:28:41] [build-stderr]       |                                                                                   ^~~~~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:13:20: error: 'RENAME' declared as function returning a function
+[2025-12-28 15:28:42] [build-stderr]    13 | inline static void RENAME(hcscale)(uint16_t *dst, long dstWidth, uint8_t *src1, uint8_t *src2,
+[2025-12-28 15:28:42] [build-stderr]       |                    ^~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c: In function 'RENAME':
+[2025-12-28 15:28:42] [build-stderr] 12.c:25:9: error: 'srcFormat' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]    25 |     if (srcFormat==PIX_FMT_YUYV422)
+[2025-12-28 15:28:42] [build-stderr]       |         ^~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:25:9: note: each undeclared identifier is reported only once for each function it appears in
+[2025-12-28 15:28:42] [build-stderr] 12.c:25:20: error: 'PIX_FMT_YUYV422' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]    25 |     if (srcFormat==PIX_FMT_YUYV422)
+[2025-12-28 15:28:42] [build-stderr]       |                    ^~~~~~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:29:16: error: 'yuy2ToUV' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]    29 |         RENAME(yuy2ToUV)(formatConvBuffer, formatConvBuffer+2048, src1, src2, srcW);
+[2025-12-28 15:28:42] [build-stderr]       |                ^~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:29:26: error: 'formatConvBuffer' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]    29 |         RENAME(yuy2ToUV)(formatConvBuffer, formatConvBuffer+2048, src1, src2, srcW);
+[2025-12-28 15:28:42] [build-stderr]       |                          ^~~~~~~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:29:67: error: 'src1' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]    29 |         RENAME(yuy2ToUV)(formatConvBuffer, formatConvBuffer+2048, src1, src2, srcW);
+[2025-12-28 15:28:42] [build-stderr]       |                                                                   ^~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:29:73: error: 'src2' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]    29 |         RENAME(yuy2ToUV)(formatConvBuffer, formatConvBuffer+2048, src1, src2, srcW);
+[2025-12-28 15:28:42] [build-stderr]       |                                                                         ^~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:29:79: error: 'srcW' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]    29 |         RENAME(yuy2ToUV)(formatConvBuffer, formatConvBuffer+2048, src1, src2, srcW);
+[2025-12-28 15:28:42] [build-stderr]       |                                                                               ^~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:37:25: error: 'PIX_FMT_UYVY422' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]    37 |     else if (srcFormat==PIX_FMT_UYVY422)
+[2025-12-28 15:28:42] [build-stderr]       |                         ^~~~~~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:41:16: error: 'uyvyToUV' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]    41 |         RENAME(uyvyToUV)(formatConvBuffer, formatConvBuffer+2048, src1, src2, srcW);
+[2025-12-28 15:28:42] [build-stderr]       |                ^~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:49:25: error: 'PIX_FMT_RGB32' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]    49 |     else if (srcFormat==PIX_FMT_RGB32)
+[2025-12-28 15:28:42] [build-stderr]       |                         ^~~~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:53:16: error: 'bgr32ToUV' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]    53 |         RENAME(bgr32ToUV)(formatConvBuffer, formatConvBuffer+2048, src1, src2, srcW);
+[2025-12-28 15:28:42] [build-stderr]       |                ^~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:61:25: error: 'PIX_FMT_BGR24' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]    61 |     else if (srcFormat==PIX_FMT_BGR24)
+[2025-12-28 15:28:42] [build-stderr]       |                         ^~~~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:65:16: error: 'bgr24ToUV' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]    65 |         RENAME(bgr24ToUV)(formatConvBuffer, formatConvBuffer+2048, src1, src2, srcW);
+[2025-12-28 15:28:42] [build-stderr]       |                ^~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:73:25: error: 'PIX_FMT_BGR565' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]    73 |     else if (srcFormat==PIX_FMT_BGR565)
+[2025-12-28 15:28:42] [build-stderr]       |                         ^~~~~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:77:16: error: 'bgr16ToUV' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]    77 |         RENAME(bgr16ToUV)(formatConvBuffer, formatConvBuffer+2048, src1, src2, srcW);
+[2025-12-28 15:28:42] [build-stderr]       |                ^~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:85:25: error: 'PIX_FMT_BGR555' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]    85 |     else if (srcFormat==PIX_FMT_BGR555)
+[2025-12-28 15:28:42] [build-stderr]       |                         ^~~~~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:89:16: error: 'bgr15ToUV' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]    89 |         RENAME(bgr15ToUV)(formatConvBuffer, formatConvBuffer+2048, src1, src2, srcW);
+[2025-12-28 15:28:42] [build-stderr]       |                ^~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:97:25: error: 'PIX_FMT_BGR32' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]    97 |     else if (srcFormat==PIX_FMT_BGR32)
+[2025-12-28 15:28:42] [build-stderr]       |                         ^~~~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:101:16: error: 'rgb32ToUV' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]   101 |         RENAME(rgb32ToUV)(formatConvBuffer, formatConvBuffer+2048, src1, src2, srcW);
+[2025-12-28 15:28:42] [build-stderr]       |                ^~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:109:25: error: 'PIX_FMT_RGB24' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]   109 |     else if (srcFormat==PIX_FMT_RGB24)
+[2025-12-28 15:28:42] [build-stderr]       |                         ^~~~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:113:16: error: 'rgb24ToUV' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]   113 |         RENAME(rgb24ToUV)(formatConvBuffer, formatConvBuffer+2048, src1, src2, srcW);
+[2025-12-28 15:28:42] [build-stderr]       |                ^~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:121:25: error: 'PIX_FMT_RGB565' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]   121 |     else if (srcFormat==PIX_FMT_RGB565)
+[2025-12-28 15:28:42] [build-stderr]       |                         ^~~~~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:125:16: error: 'rgb16ToUV' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]   125 |         RENAME(rgb16ToUV)(formatConvBuffer, formatConvBuffer+2048, src1, src2, srcW);
+[2025-12-28 15:28:42] [build-stderr]       |                ^~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:133:25: error: 'PIX_FMT_RGB555' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]   133 |     else if (srcFormat==PIX_FMT_RGB555)
+[2025-12-28 15:28:42] [build-stderr]       |                         ^~~~~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:137:16: error: 'rgb15ToUV' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]   137 |         RENAME(rgb15ToUV)(formatConvBuffer, formatConvBuffer+2048, src1, src2, srcW);
+[2025-12-28 15:28:42] [build-stderr]       |                ^~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:153:25: error: 'PIX_FMT_RGB8' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]   153 |     else if (srcFormat==PIX_FMT_RGB8 || srcFormat==PIX_FMT_BGR8 || srcFormat==PIX_FMT_PAL8 || srcFormat==PIX_FMT_BGR4_BYTE  || srcFormat==PIX_FMT_RGB4_BYTE)
+[2025-12-28 15:28:42] [build-stderr]       |                         ^~~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:153:52: error: 'PIX_FMT_BGR8' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]   153 |     else if (srcFormat==PIX_FMT_RGB8 || srcFormat==PIX_FMT_BGR8 || srcFormat==PIX_FMT_PAL8 || srcFormat==PIX_FMT_BGR4_BYTE  || srcFormat==PIX_FMT_RGB4_BYTE)
+[2025-12-28 15:28:42] [build-stderr]       |                                                    ^~~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:153:79: error: 'PIX_FMT_PAL8' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]   153 |     else if (srcFormat==PIX_FMT_RGB8 || srcFormat==PIX_FMT_BGR8 || srcFormat==PIX_FMT_PAL8 || srcFormat==PIX_FMT_BGR4_BYTE  || srcFormat==PIX_FMT_RGB4_BYTE)
+[2025-12-28 15:28:42] [build-stderr]       |                                                                               ^~~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:153:106: error: 'PIX_FMT_BGR4_BYTE' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]   153 |     else if (srcFormat==PIX_FMT_RGB8 || srcFormat==PIX_FMT_BGR8 || srcFormat==PIX_FMT_PAL8 || srcFormat==PIX_FMT_BGR4_BYTE  || srcFormat==PIX_FMT_RGB4_BYTE)
+[2025-12-28 15:28:42] [build-stderr]       |                                                                                                          ^~~~~~~~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:153:139: error: 'PIX_FMT_RGB4_BYTE' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]   153 |     else if (srcFormat==PIX_FMT_RGB8 || srcFormat==PIX_FMT_BGR8 || srcFormat==PIX_FMT_PAL8 || srcFormat==PIX_FMT_BGR4_BYTE  || srcFormat==PIX_FMT_RGB4_BYTE)
+[2025-12-28 15:28:42] [build-stderr]       |                                                                                                                                           ^~~~~~~~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:157:16: error: 'palToUV' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]   157 |         RENAME(palToUV)(formatConvBuffer, formatConvBuffer+2048, src1, src2, srcW, pal);
+[2025-12-28 15:28:42] [build-stderr]       |                ^~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:157:84: error: 'pal' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]   157 |         RENAME(palToUV)(formatConvBuffer, formatConvBuffer+2048, src1, src2, srcW, pal);
+[2025-12-28 15:28:42] [build-stderr]       |                                                                                    ^~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:175:11: error: 'flags' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]   175 |     if (!(flags&SWS_FAST_BILINEAR))
+[2025-12-28 15:28:42] [build-stderr]       |           ^~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:175:17: error: 'SWS_FAST_BILINEAR' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]   175 |     if (!(flags&SWS_FAST_BILINEAR))
+[2025-12-28 15:28:42] [build-stderr]       |                 ^~~~~~~~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:181:16: error: 'hScale' undeclared (first use in this function); did you mean 'hcscale'?
+[2025-12-28 15:28:42] [build-stderr]   181 |         RENAME(hScale)(dst     , dstWidth, src1, srcW, xInc, hChrFilter, hChrFilterPos, hChrFilterSize);
+[2025-12-28 15:28:42] [build-stderr]       |                ^~~~~~
+[2025-12-28 15:28:42] [build-stderr]       |                hcscale
+[2025-12-28 15:28:42] [build-stderr] 12.c:181:24: error: 'dst' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]   181 |         RENAME(hScale)(dst     , dstWidth, src1, srcW, xInc, hChrFilter, hChrFilterPos, hChrFilterSize);
+[2025-12-28 15:28:42] [build-stderr]       |                        ^~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:181:34: error: 'dstWidth' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]   181 |         RENAME(hScale)(dst     , dstWidth, src1, srcW, xInc, hChrFilter, hChrFilterPos, hChrFilterSize);
+[2025-12-28 15:28:42] [build-stderr]       |                                  ^~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:181:56: error: 'xInc' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]   181 |         RENAME(hScale)(dst     , dstWidth, src1, srcW, xInc, hChrFilter, hChrFilterPos, hChrFilterSize);
+[2025-12-28 15:28:42] [build-stderr]       |                                                        ^~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:181:62: error: 'hChrFilter' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]   181 |         RENAME(hScale)(dst     , dstWidth, src1, srcW, xInc, hChrFilter, hChrFilterPos, hChrFilterSize);
+[2025-12-28 15:28:42] [build-stderr]       |                                                              ^~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:181:74: error: 'hChrFilterPos' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]   181 |         RENAME(hScale)(dst     , dstWidth, src1, srcW, xInc, hChrFilter, hChrFilterPos, hChrFilterSize);
+[2025-12-28 15:28:42] [build-stderr]       |                                                                          ^~~~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 12.c:181:89: error: 'hChrFilterSize' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]   181 |         RENAME(hScale)(dst     , dstWidth, src1, srcW, xInc, hChrFilter, hChrFilterPos, hChrFilterSize);
+[2025-12-28 15:28:42] [build-stderr]       |                                                                                         ^~~~~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 13.c: In function 'render_line':
+[2025-12-28 15:28:42] [build-stderr] 13.c:25:15: error: 'ff_vorbis_floor1_inverse_db_table' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]    25 |     buf[x0] = ff_vorbis_floor1_inverse_db_table[y0];
+[2025-12-28 15:28:42] [build-stderr]       |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 13.c:25:15: note: each undeclared identifier is reported only once for each function it appears in
+[2025-12-28 15:28:42] [build-stderr] 14.c:13:26: error: unknown type name 'EXRContext'
+[2025-12-28 15:28:42] [build-stderr]    13 | static int decode_header(EXRContext *s)
+[2025-12-28 15:28:42] [build-stderr]       |                          ^~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 15.c:13:8: error: unknown type name 'target_long'
+[2025-12-28 15:28:42] [build-stderr]    13 | static target_long monitor_get_xer (const struct MonitorDef *md, int val)
+[2025-12-28 15:28:42] [build-stderr]       |        ^~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 15.c: In function 'monitor_get_xer':
+[2025-12-28 15:28:42] [build-stderr] 15.c:17:5: error: unknown type name 'CPUState'
+[2025-12-28 15:28:42] [build-stderr]    17 |     CPUState *env = mon_get_cpu();
+[2025-12-28 15:28:42] [build-stderr]       |     ^~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 15.c:23:15: error: request for member 'xer' in something not a structure or union
+[2025-12-28 15:28:42] [build-stderr]    23 |     return env->xer;
+[2025-12-28 15:28:42] [build-stderr]       |               ^~
+[2025-12-28 15:28:42] [build-stderr] 16.c: In function 'tcp_wait_for_connect':
+[2025-12-28 15:28:42] [build-stderr] 16.c:17:5: error: unknown type name 'MigrationState'
+[2025-12-28 15:28:42] [build-stderr]    17 |     MigrationState *s = opaque;
+[2025-12-28 15:28:42] [build-stderr]       |     ^~~~~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 16.c:21:5: error: unknown type name 'socklen_t'
+[2025-12-28 15:28:42] [build-stderr]    21 |     socklen_t valsize = sizeof(val);
+[2025-12-28 15:28:42] [build-stderr]       |     ^~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 16.c:29:27: error: request for member 'fd' in something not a structure or union
+[2025-12-28 15:28:42] [build-stderr]    29 |         ret = getsockopt(s->fd, SOL_SOCKET, SO_ERROR, (void *) &val, &valsize);
+[2025-12-28 15:28:42] [build-stderr]       |                           ^~
+[2025-12-28 15:28:42] [build-stderr] 16.c:29:33: error: 'SOL_SOCKET' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]    29 |         ret = getsockopt(s->fd, SOL_SOCKET, SO_ERROR, (void *) &val, &valsize);
+[2025-12-28 15:28:42] [build-stderr]       |                                 ^~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 16.c:29:33: note: each undeclared identifier is reported only once for each function it appears in
+[2025-12-28 15:28:42] [build-stderr] 16.c:29:45: error: 'SO_ERROR' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]    29 |         ret = getsockopt(s->fd, SOL_SOCKET, SO_ERROR, (void *) &val, &valsize);
+[2025-12-28 15:28:42] [build-stderr]       |                                             ^~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 16.c:45:27: error: request for member 'fd' in something not a structure or union
+[2025-12-28 15:28:42] [build-stderr]    45 |     qemu_set_fd_handler2(s->fd, NULL, NULL, NULL, NULL);
+[2025-12-28 15:28:42] [build-stderr]       |                           ^~
+[2025-12-28 15:28:42] [build-stderr] 17.c: In function 'decode_interrupt_cb':
+[2025-12-28 15:28:42] [build-stderr] 17.c:17:12: error: 'received_nb_signals' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]    17 |     return received_nb_signals > transcode_init_done;
+[2025-12-28 15:28:42] [build-stderr]       |            ^~~~~~~~~~~~~~~~~~~
+[2025-12-28 15:28:42] [build-stderr] 17.c:17:12: note: each undeclared identifier is reported only once for each function it appears in
+[2025-12-28 15:28:42] [build-stderr] 17.c:17:34: error: 'transcode_init_done' undeclared (first use in this function)
+[2025-12-28 15:28:42] [build-stderr]    17 |     return received_nb_signals > transcode_init_done;
+[2025-12-28 15:28:42] [build-stderr]       |                                  ^~~~~~~~~~~~~~~~~~~
+[2025-12-28 15:28:43] [build-stderr] 18.c: In function 'reap_filters':
+[2025-12-28 15:28:43] [build-stderr] 18.c:17:5: error: unknown type name 'AVFilterBufferRef'
+[2025-12-28 15:28:43] [build-stderr]    17 |     AVFilterBufferRef *picref;
+[2025-12-28 15:28:43] [build-stderr]       |     ^~~~~~~~~~~~~~~~~
+[2025-12-28 15:28:43] [build-stderr] 18.c:19:5: error: unknown type name 'AVFrame'
+[2025-12-28 15:28:43] [build-stderr]    19 |     AVFrame *filtered_frame = NULL;
+[2025-12-28 15:28:43] [build-stderr]       |     ^~~~~~~
+[2025-12-28 15:28:43] [build-stderr] 18.c:29:21: error: 'nb_output_streams' undeclared (first use in this function)
+[2025-12-28 15:28:43] [build-stderr]    29 |     for (i = 0; i < nb_output_streams; i++) {
+[2025-12-28 15:28:43] [build-stderr]       |                     ^~~~~~~~~~~~~~~~~
+[2025-12-28 15:28:43] [build-stderr] 18.c:29:21: note: each undeclared identifier is reported only once for each function it appears in
+[2025-12-28 15:28:43] [build-stderr] 18.c:31:9: error: unknown type name 'OutputStream'
+[2025-12-28 15:28:43] [build-stderr]    31 |         OutputStream *ost = output_streams[i];
+[2025-12-28 15:28:43] [build-stderr]       |         ^~~~~~~~~~~~
+[2025-12-28 15:28:43] [build-stderr] 18.c:31:29: error: 'output_streams' undeclared (first use in this function)
+[2025-12-28 15:28:43] [build-stderr]    31 |         OutputStream *ost = output_streams[i];
+[2025-12-28 15:28:43] [build-stderr]       |                             ^~~~~~~~~~~~~~
+[2025-12-28 15:28:43] [build-stderr] 18.c:33:9: error: unknown type name 'OutputFile'
+[2025-12-28 15:28:43] [build-stderr]    33 |         OutputFile    *of = output_files[ost->file_index];
+[2025-12-28 15:28:43] [build-stderr]       |         ^~~~~~~~~~
+[2025-12-28 15:28:43] [build-stderr] 18.c:33:29: error: 'output_files' undeclared (first use in this function)
+[2025-12-28 15:28:43] [build-stderr]    33 |         OutputFile    *of = output_files[ost->file_index];
+[2025-12-28 15:28:43] [build-stderr]       |                             ^~~~~~~~~~~~
+[2025-12-28 15:28:43] [build-stderr] 18.c:33:45: error: request for member 'file_index' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]    33 |         OutputFile    *of = output_files[ost->file_index];
+[2025-12-28 15:28:43] [build-stderr]       |                                             ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:39:17: error: request for member 'filter' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]    39 |         if (!ost->filter)
+[2025-12-28 15:28:43] [build-stderr]       |                 ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:45:17: error: request for member 'filtered_frame' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]    45 |         if (!ost->filtered_frame && !(ost->filtered_frame = avcodec_alloc_frame())) {
+[2025-12-28 15:28:43] [build-stderr]       |                 ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:45:42: error: request for member 'filtered_frame' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]    45 |         if (!ost->filtered_frame && !(ost->filtered_frame = avcodec_alloc_frame())) {
+[2025-12-28 15:28:43] [build-stderr]       |                                          ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:51:43: error: request for member 'filtered_frame' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]    51 |             avcodec_get_frame_defaults(ost->filtered_frame);
+[2025-12-28 15:28:43] [build-stderr]       |                                           ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:53:29: error: request for member 'filtered_frame' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]    53 |         filtered_frame = ost->filtered_frame;
+[2025-12-28 15:28:43] [build-stderr]       |                             ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:59:51: error: request for member 'filter' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]    59 |             ret = av_buffersink_get_buffer_ref(ost->filter->filter, &picref,
+[2025-12-28 15:28:43] [build-stderr]       |                                                   ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:61:48: error: 'AV_BUFFERSINK_FLAG_NO_REQUEST' undeclared (first use in this function)
+[2025-12-28 15:28:43] [build-stderr]    61 |                                                AV_BUFFERSINK_FLAG_NO_REQUEST);
+[2025-12-28 15:28:43] [build-stderr]       |                                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[2025-12-28 15:28:43] [build-stderr] 18.c:65:54: error: 'AVERROR_EOF' undeclared (first use in this function)
+[2025-12-28 15:28:43] [build-stderr]    65 |                 if (ret != AVERROR(EAGAIN) && ret != AVERROR_EOF) {
+[2025-12-28 15:28:43] [build-stderr]       |                                                      ^~~~~~~~~~~
+[2025-12-28 15:28:43] [build-stderr] 18.c:71:34: error: 'AV_LOG_WARNING' undeclared (first use in this function)
+[2025-12-28 15:28:43] [build-stderr]    71 |                     av_log(NULL, AV_LOG_WARNING,
+[2025-12-28 15:28:43] [build-stderr]       |                                  ^~~~~~~~~~~~~~
+[2025-12-28 15:28:43] [build-stderr] 18.c:78:25: error: 'AV_NOPTS_VALUE' undeclared (first use in this function)
+[2025-12-28 15:28:43] [build-stderr]    78 |             frame_pts = AV_NOPTS_VALUE;
+[2025-12-28 15:28:43] [build-stderr]       |                         ^~~~~~~~~~~~~~
+[2025-12-28 15:28:43] [build-stderr] 18.c:80:23: error: request for member 'pts' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]    80 |             if (picref->pts != AV_NOPTS_VALUE) {
+[2025-12-28 15:28:43] [build-stderr]       |                       ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:82:31: error: request for member 'pts' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]    82 |                 filtered_frame->pts = frame_pts = av_rescale_q(picref->pts,
+[2025-12-28 15:28:43] [build-stderr]       |                               ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:82:70: error: request for member 'pts' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]    82 |                 filtered_frame->pts = frame_pts = av_rescale_q(picref->pts,
+[2025-12-28 15:28:43] [build-stderr]       |                                                                      ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:84:52: error: request for member 'filter' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]    84 |                                                 ost->filter->filter->inputs[0]->time_base,
+[2025-12-28 15:28:43] [build-stderr]       |                                                    ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:86:52: error: request for member 'st' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]    86 |                                                 ost->st->codec->time_base) -
+[2025-12-28 15:28:43] [build-stderr]       |                                                    ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:88:52: error: request for member 'start_time' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]    88 |                                     av_rescale_q(of->start_time,
+[2025-12-28 15:28:43] [build-stderr]       |                                                    ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:90:49: error: 'AV_TIME_BASE_Q' undeclared (first use in this function)
+[2025-12-28 15:28:43] [build-stderr]    90 |                                                 AV_TIME_BASE_Q,
+[2025-12-28 15:28:43] [build-stderr]       |                                                 ^~~~~~~~~~~~~~
+[2025-12-28 15:28:43] [build-stderr] 18.c:92:52: error: request for member 'st' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]    92 |                                                 ost->st->codec->time_base);
+[2025-12-28 15:28:43] [build-stderr]       |                                                    ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:96:23: error: request for member 'start_time' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]    96 |                 if (of->start_time && filtered_frame->pts < 0) {
+[2025-12-28 15:28:43] [build-stderr]       |                       ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:96:53: error: request for member 'pts' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]    96 |                 if (of->start_time && filtered_frame->pts < 0) {
+[2025-12-28 15:28:43] [build-stderr]       |                                                     ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:112:24: error: request for member 'filter' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]   112 |             switch (ost->filter->filter->inputs[0]->type) {
+[2025-12-28 15:28:43] [build-stderr]       |                        ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:114:18: error: 'AVMEDIA_TYPE_VIDEO' undeclared (first use in this function)
+[2025-12-28 15:28:43] [build-stderr]   114 |             case AVMEDIA_TYPE_VIDEO:
+[2025-12-28 15:28:43] [build-stderr]       |                  ^~~~~~~~~~~~~~~~~~
+[2025-12-28 15:28:43] [build-stderr] 18.c:118:31: error: request for member 'pts' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]   118 |                 filtered_frame->pts = frame_pts;
+[2025-12-28 15:28:43] [build-stderr]       |                               ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:120:25: error: request for member 'frame_aspect_ratio' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]   120 |                 if (!ost->frame_aspect_ratio)
+[2025-12-28 15:28:43] [build-stderr]       |                         ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:122:24: error: request for member 'st' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]   122 |                     ost->st->codec->sample_aspect_ratio = picref->video->sample_aspect_ratio;
+[2025-12-28 15:28:43] [build-stderr]       |                        ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:122:65: error: request for member 'video' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]   122 |                     ost->st->codec->sample_aspect_ratio = picref->video->sample_aspect_ratio;
+[2025-12-28 15:28:43] [build-stderr]       |                                                                 ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:126:32: error: request for member 'ctx' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]   126 |                 do_video_out(of->ctx, ost, filtered_frame);
+[2025-12-28 15:28:43] [build-stderr]       |                                ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:129:18: error: 'AVMEDIA_TYPE_AUDIO' undeclared (first use in this function)
+[2025-12-28 15:28:43] [build-stderr]   129 |             case AVMEDIA_TYPE_AUDIO:
+[2025-12-28 15:28:43] [build-stderr]       |                  ^~~~~~~~~~~~~~~~~~
+[2025-12-28 15:28:43] [build-stderr] 18.c:133:31: error: request for member 'pts' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]   133 |                 filtered_frame->pts = frame_pts;
+[2025-12-28 15:28:43] [build-stderr]       |                               ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:141:32: error: request for member 'ctx' in something not a structure or union
+[2025-12-28 15:28:43] [build-stderr]   141 |                 do_audio_out(of->ctx, ost, filtered_frame);
+[2025-12-28 15:28:43] [build-stderr]       |                                ^~
+[2025-12-28 15:28:43] [build-stderr] 18.c:159:5: error: expected declaration or statement at end of input
+[2025-12-28 15:28:43] [build-stderr]   159 |     return 0;
+[2025-12-28 15:28:43] [build-stderr]       |     ^~~~~~
+[2025-12-28 15:28:43] [build-stderr] 18.c:159:5: error: expected declaration or statement at end of input
+[2025-12-28 15:28:43] [build-stderr] 18.c:159:5: error: expected declaration or statement at end of input
+[2025-12-28 15:28:43] [build-stderr] 18.c:159:5: error: expected declaration or statement at end of input
+[2025-12-28 15:28:43] [build-stderr] 18.c:159:5: error: expected declaration or statement at end of input
+[2025-12-28 15:28:43] [build-stderr] 18.c:159:5: error: expected declaration or statement at end of input
+[2025-12-28 15:28:43] [build-stderr] 18.c:159:5: error: expected declaration or statement at end of input
+[2025-12-28 15:28:43] [build-stderr] 18.c:159:5: error: expected declaration or statement at end of input
+[2025-12-28 15:28:43] [build-stderr] 19.c: In function 'perf_lifecycle':
+[2025-12-28 15:28:43] [build-stderr] 19.c:17:5: error: unknown type name 'Coroutine'
+[2025-12-28 15:28:43] [build-stderr]    17 |     Coroutine *coroutine;
+[2025-12-28 15:28:43] [build-stderr]       |     ^~~~~~~~~
+[2025-12-28 15:28:43] [build-stderr] 19.c:33:43: error: 'empty_coroutine' undeclared (first use in this function)
+[2025-12-28 15:28:43] [build-stderr]    33 |         coroutine = qemu_coroutine_create(empty_coroutine);
+[2025-12-28 15:28:43] [build-stderr]       |                                           ^~~~~~~~~~~~~~~
+[2025-12-28 15:28:43] [build-stderr] 19.c:33:43: note: each undeclared identifier is reported only once for each function it appears in
+[2025-12-28 15:28:43] [build-stderr] 2.c:13:25: error: unknown type name 'CPUState'
+[2025-12-28 15:28:43] [build-stderr]    13 | void ppc40x_chip_reset (CPUState *env)
+[2025-12-28 15:28:43] [build-stderr]       |                         ^~~~~~~~
+[2025-12-28 15:28:43] [build-stderr] 20.c:13:29: error: unknown type name 'ObjectClass'
+[2025-12-28 15:28:43] [build-stderr]    13 | static void ehci_class_init(ObjectClass *klass, void *data)
+[2025-12-28 15:28:43] [build-stderr]       |                             ^~~~~~~~~~~
+[2025-12-28 15:28:43] [build-stderr] 21.c:13:25: error: unknown type name 'AVFilterLink'
+[2025-12-28 15:28:43] [build-stderr]    13 | static int config_input(AVFilterLink *inlink)
+[2025-12-28 15:28:43] [build-stderr]       |                         ^~~~~~~~~~~~
+[2025-12-28 15:28:43] [build-stderr] 22.c:13:30: error: unknown type name 'GDBState'
+[2025-12-28 15:28:43] [build-stderr]    13 | static int gdb_handle_packet(GDBState *s, const char *line_buf)
+[2025-12-28 15:28:43] [build-stderr]       |                              ^~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 23.c:13:8: error: unknown type name 'gboolean'
+[2025-12-28 15:28:44] [build-stderr]    13 | static gboolean register_signal_handlers(void)
+[2025-12-28 15:28:44] [build-stderr]       |        ^~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 23.c: In function 'register_signal_handlers':
+[2025-12-28 15:28:44] [build-stderr] 23.c:17:22: error: storage size of 'sigact' isn't known
+[2025-12-28 15:28:44] [build-stderr]    17 |     struct sigaction sigact, sigact_chld;
+[2025-12-28 15:28:44] [build-stderr]       |                      ^~~~~~
+[2025-12-28 15:28:44] [build-stderr] 23.c:17:30: error: storage size of 'sigact_chld' isn't known
+[2025-12-28 15:28:44] [build-stderr]    17 |     struct sigaction sigact, sigact_chld;
+[2025-12-28 15:28:44] [build-stderr]       |                              ^~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 23.c:23:31: error: invalid application of 'sizeof' to incomplete type 'struct sigaction'
+[2025-12-28 15:28:44] [build-stderr]    23 |     memset(&sigact, 0, sizeof(struct sigaction));
+[2025-12-28 15:28:44] [build-stderr]       |                               ^~~~~~
+[2025-12-28 15:28:44] [build-stderr] 23.c:25:25: error: 'quit_handler' undeclared (first use in this function)
+[2025-12-28 15:28:44] [build-stderr]    25 |     sigact.sa_handler = quit_handler;
+[2025-12-28 15:28:44] [build-stderr]       |                         ^~~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 23.c:25:25: note: each undeclared identifier is reported only once for each function it appears in
+[2025-12-28 15:28:44] [build-stderr] 23.c:29:21: error: 'SIGINT' undeclared (first use in this function)
+[2025-12-28 15:28:44] [build-stderr]    29 |     ret = sigaction(SIGINT, &sigact, NULL);
+[2025-12-28 15:28:44] [build-stderr]       |                     ^~~~~~
+[2025-12-28 15:28:44] [build-stderr] 23.c:35:16: error: 'false' undeclared (first use in this function)
+[2025-12-28 15:28:44] [build-stderr]    35 |         return false;
+[2025-12-28 15:28:44] [build-stderr]       |                ^~~~~
+[2025-12-28 15:28:44] [build-stderr] 23.c:7:1: note: 'false' is defined in header '<stdbool.h>'; did you forget to '#include <stdbool.h>'?
+[2025-12-28 15:28:44] [build-stderr]     6 | #include <stddef.h>
+[2025-12-28 15:28:44] [build-stderr]   +++ |+#include <stdbool.h>
+[2025-12-28 15:28:44] [build-stderr]     7 | 
+[2025-12-28 15:28:44] [build-stderr] 23.c:39:21: error: 'SIGTERM' undeclared (first use in this function)
+[2025-12-28 15:28:44] [build-stderr]    39 |     ret = sigaction(SIGTERM, &sigact, NULL);
+[2025-12-28 15:28:44] [build-stderr]       |                     ^~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 23.c:51:36: error: invalid application of 'sizeof' to incomplete type 'struct sigaction'
+[2025-12-28 15:28:44] [build-stderr]    51 |     memset(&sigact_chld, 0, sizeof(struct sigaction));
+[2025-12-28 15:28:44] [build-stderr]       |                                    ^~~~~~
+[2025-12-28 15:28:44] [build-stderr] 23.c:53:30: error: 'child_handler' undeclared (first use in this function)
+[2025-12-28 15:28:44] [build-stderr]    53 |     sigact_chld.sa_handler = child_handler;
+[2025-12-28 15:28:44] [build-stderr]       |                              ^~~~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 23.c:55:28: error: 'SA_NOCLDSTOP' undeclared (first use in this function)
+[2025-12-28 15:28:44] [build-stderr]    55 |     sigact_chld.sa_flags = SA_NOCLDSTOP;
+[2025-12-28 15:28:44] [build-stderr]       |                            ^~~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 23.c:57:21: error: 'SIGCHLD' undeclared (first use in this function)
+[2025-12-28 15:28:44] [build-stderr]    57 |     ret = sigaction(SIGCHLD, &sigact_chld, NULL);
+[2025-12-28 15:28:44] [build-stderr]       |                     ^~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 23.c:67:12: error: 'true' undeclared (first use in this function)
+[2025-12-28 15:28:44] [build-stderr]    67 |     return true;
+[2025-12-28 15:28:44] [build-stderr]       |            ^~~~
+[2025-12-28 15:28:44] [build-stderr] 23.c:67:12: note: 'true' is defined in header '<stdbool.h>'; did you forget to '#include <stdbool.h>'?
+[2025-12-28 15:28:44] [build-stderr] 24.c:13:8: error: unknown type name 'TCGv'
+[2025-12-28 15:28:44] [build-stderr]    13 | static TCGv gen_lea_indexed(CPUM68KState *env, DisasContext *s, TCGv base)
+[2025-12-28 15:28:44] [build-stderr]       |        ^~~~
+[2025-12-28 15:28:44] [build-stderr] 24.c:13:29: error: unknown type name 'CPUM68KState'
+[2025-12-28 15:28:44] [build-stderr]    13 | static TCGv gen_lea_indexed(CPUM68KState *env, DisasContext *s, TCGv base)
+[2025-12-28 15:28:44] [build-stderr]       |                             ^~~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 24.c:13:48: error: unknown type name 'DisasContext'
+[2025-12-28 15:28:44] [build-stderr]    13 | static TCGv gen_lea_indexed(CPUM68KState *env, DisasContext *s, TCGv base)
+[2025-12-28 15:28:44] [build-stderr]       |                                                ^~~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 24.c:13:65: error: unknown type name 'TCGv'
+[2025-12-28 15:28:44] [build-stderr]    13 | static TCGv gen_lea_indexed(CPUM68KState *env, DisasContext *s, TCGv base)
+[2025-12-28 15:28:44] [build-stderr]       |                                                                 ^~~~
+[2025-12-28 15:28:44] [build-stderr] 25.c:13:26: error: unknown type name 'AVFormatContext'
+[2025-12-28 15:28:44] [build-stderr]    13 | static void show_packets(AVFormatContext *fmt_ctx)
+[2025-12-28 15:28:44] [build-stderr]       |                          ^~~~~~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 26.c:13:26: error: unknown type name 'FFV1Context'
+[2025-12-28 15:28:44] [build-stderr]    13 | static void decode_plane(FFV1Context *s, uint8_t *src,
+[2025-12-28 15:28:44] [build-stderr]       |                          ^~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 27.c: In function 'img_map':
+[2025-12-28 15:28:44] [build-stderr] 27.c:19:5: error: unknown type name 'OutputFormat'
+[2025-12-28 15:28:44] [build-stderr]    19 |     OutputFormat output_format = OFORMAT_HUMAN;
+[2025-12-28 15:28:44] [build-stderr]       |     ^~~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 27.c:19:34: error: 'OFORMAT_HUMAN' undeclared (first use in this function)
+[2025-12-28 15:28:44] [build-stderr]    19 |     OutputFormat output_format = OFORMAT_HUMAN;
+[2025-12-28 15:28:44] [build-stderr]       |                                  ^~~~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 27.c:19:34: note: each undeclared identifier is reported only once for each function it appears in
+[2025-12-28 15:28:44] [build-stderr] 27.c:21:5: error: unknown type name 'BlockBackend'
+[2025-12-28 15:28:44] [build-stderr]    21 |     BlockBackend *blk;
+[2025-12-28 15:28:44] [build-stderr]       |     ^~~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 27.c:23:5: error: unknown type name 'BlockDriverState'
+[2025-12-28 15:28:44] [build-stderr]    23 |     BlockDriverState *bs;
+[2025-12-28 15:28:44] [build-stderr]       |     ^~~~~~~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 27.c:29:5: error: unknown type name 'MapEntry'
+[2025-12-28 15:28:44] [build-stderr]    29 |     MapEntry curr = { .length = 0 }, next;
+[2025-12-28 15:28:44] [build-stderr]       |     ^~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 27.c:29:23: error: field name not in record or union initializer
+[2025-12-28 15:28:44] [build-stderr]    29 |     MapEntry curr = { .length = 0 }, next;
+[2025-12-28 15:28:44] [build-stderr]       |                       ^
+[2025-12-28 15:28:44] [build-stderr] 27.c:29:23: note: (near initialization for 'curr')
+[2025-12-28 15:28:44] [build-stderr] 27.c:33:5: error: unknown type name 'bool'
+[2025-12-28 15:28:44] [build-stderr]    33 |     bool image_opts = false;
+[2025-12-28 15:28:44] [build-stderr]       |     ^~~~
+[2025-12-28 15:28:44] [build-stderr] 27.c:7:1: note: 'bool' is defined in header '<stdbool.h>'; did you forget to '#include <stdbool.h>'?
+[2025-12-28 15:28:44] [build-stderr]     6 | #include <stddef.h>
+[2025-12-28 15:28:44] [build-stderr]   +++ |+#include <stdbool.h>
+[2025-12-28 15:28:44] [build-stderr]     7 | 
+[2025-12-28 15:28:44] [build-stderr] 27.c:33:23: error: 'false' undeclared (first use in this function)
+[2025-12-28 15:28:44] [build-stderr]    33 |     bool image_opts = false;
+[2025-12-28 15:28:44] [build-stderr]       |                       ^~~~~
+[2025-12-28 15:28:44] [build-stderr] 27.c:33:23: note: 'false' is defined in header '<stdbool.h>'; did you forget to '#include <stdbool.h>'?
+[2025-12-28 15:28:44] [build-stderr] 27.c:45:36: error: array type has incomplete element type 'struct option'
+[2025-12-28 15:28:44] [build-stderr]    45 |         static const struct option long_options[] = {
+[2025-12-28 15:28:44] [build-stderr]       |                                    ^~~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 27.c:47:22: error: 'no_argument' undeclared (first use in this function)
+[2025-12-28 15:28:44] [build-stderr]    47 |             {"help", no_argument, 0, 'h'},
+[2025-12-28 15:28:44] [build-stderr]       |                      ^~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 27.c:49:24: error: 'required_argument' undeclared (first use in this function)
+[2025-12-28 15:28:44] [build-stderr]    49 |             {"format", required_argument, 0, 'f'},
+[2025-12-28 15:28:44] [build-stderr]       |                        ^~~~~~~~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 27.c:51:46: error: 'OPTION_OUTPUT' undeclared (first use in this function)
+[2025-12-28 15:28:44] [build-stderr]    51 |             {"output", required_argument, 0, OPTION_OUTPUT},
+[2025-12-28 15:28:44] [build-stderr]       |                                              ^~~~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 27.c:53:46: error: 'OPTION_OBJECT' undeclared (first use in this function)
+[2025-12-28 15:28:44] [build-stderr]    53 |             {"object", required_argument, 0, OPTION_OBJECT},
+[2025-12-28 15:28:44] [build-stderr]       |                                              ^~~~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 27.c:55:44: error: 'OPTION_IMAGE_OPTS' undeclared (first use in this function)
+[2025-12-28 15:28:44] [build-stderr]    55 |             {"image-opts", no_argument, 0, OPTION_IMAGE_OPTS},
+[2025-12-28 15:28:44] [build-stderr]       |                                            ^~~~~~~~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 27.c:83:19: error: 'optarg' undeclared (first use in this function)
+[2025-12-28 15:28:44] [build-stderr]    83 |             fmt = optarg;
+[2025-12-28 15:28:44] [build-stderr]       |                   ^~~~~~
+[2025-12-28 15:28:44] [build-stderr] 27.c:95:13: error: unknown type name 'QemuOpts'
+[2025-12-28 15:28:44] [build-stderr]    95 |             QemuOpts *opts;
+[2025-12-28 15:28:44] [build-stderr]       |             ^~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 27.c:97:45: error: 'qemu_object_opts' undeclared (first use in this function)
+[2025-12-28 15:28:44] [build-stderr]    97 |             opts = qemu_opts_parse_noisily(&qemu_object_opts,
+[2025-12-28 15:28:44] [build-stderr]       |                                             ^~~~~~~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 27.c:99:52: error: 'true' undeclared (first use in this function)
+[2025-12-28 15:28:44] [build-stderr]    99 |                                            optarg, true);
+[2025-12-28 15:28:44] [build-stderr]       |                                                    ^~~~
+[2025-12-28 15:28:44] [build-stderr] 27.c:99:52: note: 'true' is defined in header '<stdbool.h>'; did you forget to '#include <stdbool.h>'?
+[2025-12-28 15:28:44] [build-stderr] 27.c:119:9: error: 'optind' undeclared (first use in this function)
+[2025-12-28 15:28:44] [build-stderr]   119 |     if (optind != argc - 1) {
+[2025-12-28 15:28:44] [build-stderr]       |         ^~~~~~
+[2025-12-28 15:28:44] [build-stderr] 27.c:131:25: error: 'OFORMAT_JSON' undeclared (first use in this function)
+[2025-12-28 15:28:44] [build-stderr]   131 |         output_format = OFORMAT_JSON;
+[2025-12-28 15:28:44] [build-stderr]       |                         ^~~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 27.c:149:27: error: 'user_creatable_add_opts_foreach' undeclared (first use in this function)
+[2025-12-28 15:28:44] [build-stderr]   149 |                           user_creatable_add_opts_foreach,
+[2025-12-28 15:28:44] [build-stderr]       |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 27.c:181:16: error: request for member 'start' in something not a structure or union
+[2025-12-28 15:28:44] [build-stderr]   181 |     while (curr.start + curr.length < length) {
+[2025-12-28 15:28:44] [build-stderr]       |                ^
+[2025-12-28 15:28:44] [build-stderr] 27.c:181:29: error: request for member 'length' in something not a structure or union
+[2025-12-28 15:28:44] [build-stderr]   181 |     while (curr.start + curr.length < length) {
+[2025-12-28 15:28:44] [build-stderr]       |                             ^
+[2025-12-28 15:28:44] [build-stderr] 27.c:191:27: error: request for member 'start' in something not a structure or union
+[2025-12-28 15:28:44] [build-stderr]   191 |         sector_num = (curr.start + curr.length) >> BDRV_SECTOR_BITS;
+[2025-12-28 15:28:44] [build-stderr]       |                           ^
+[2025-12-28 15:28:44] [build-stderr] 27.c:191:40: error: request for member 'length' in something not a structure or union
+[2025-12-28 15:28:44] [build-stderr]   191 |         sector_num = (curr.start + curr.length) >> BDRV_SECTOR_BITS;
+[2025-12-28 15:28:44] [build-stderr]       |                                        ^
+[2025-12-28 15:28:44] [build-stderr] 27.c:191:52: error: 'BDRV_SECTOR_BITS' undeclared (first use in this function)
+[2025-12-28 15:28:44] [build-stderr]   191 |         sector_num = (curr.start + curr.length) >> BDRV_SECTOR_BITS;
+[2025-12-28 15:28:44] [build-stderr]       |                                                    ^~~~~~~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 27.c:197:46: error: 'BDRV_SECTOR_SIZE' undeclared (first use in this function)
+[2025-12-28 15:28:44] [build-stderr]   197 |         nsectors_left = DIV_ROUND_UP(length, BDRV_SECTOR_SIZE) - sector_num;
+[2025-12-28 15:28:44] [build-stderr]       |                                              ^~~~~~~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 27.c:217:17: error: request for member 'length' in something not a structure or union
+[2025-12-28 15:28:44] [build-stderr]   217 |             curr.length += next.length;
+[2025-12-28 15:28:44] [build-stderr]       |                 ^
+[2025-12-28 15:28:44] [build-stderr] 27.c:217:32: error: request for member 'length' in something not a structure or union
+[2025-12-28 15:28:44] [build-stderr]   217 |             curr.length += next.length;
+[2025-12-28 15:28:44] [build-stderr]       |                                ^
+[2025-12-28 15:28:44] [build-stderr] 27.c:225:17: error: request for member 'length' in something not a structure or union
+[2025-12-28 15:28:44] [build-stderr]   225 |         if (curr.length > 0) {
+[2025-12-28 15:28:44] [build-stderr]       |                 ^
+[2025-12-28 15:28:44] [build-stderr] 28.c:13:27: error: unknown type name 'AVFormatContext'
+[2025-12-28 15:28:44] [build-stderr]    13 | static int ea_read_header(AVFormatContext *s,
+[2025-12-28 15:28:44] [build-stderr]       |                           ^~~~~~~~~~~~~~~
+[2025-12-28 15:28:44] [build-stderr] 28.c:14:27: error: unknown type name 'AVFormatParameters'
+[2025-12-28 15:28:44] [build-stderr]    14 |                           AVFormatParameters *ap)
+[2025-12-28 15:28:44] [build-stderr]       |                           ^~~~~~~~~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 29.c:13:30: error: unknown type name 'AVCodecContext'
+[2025-12-28 15:28:45] [build-stderr]    13 | static int decode_idat_chunk(AVCodecContext *avctx, PNGDecContext *s,
+[2025-12-28 15:28:45] [build-stderr]       |                              ^~~~~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 29.c:13:53: error: unknown type name 'PNGDecContext'
+[2025-12-28 15:28:45] [build-stderr]    13 | static int decode_idat_chunk(AVCodecContext *avctx, PNGDecContext *s,
+[2025-12-28 15:28:45] [build-stderr]       |                                                     ^~~~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 29.c:15:47: error: unknown type name 'AVFrame'
+[2025-12-28 15:28:45] [build-stderr]    15 |                              uint32_t length, AVFrame *p)
+[2025-12-28 15:28:45] [build-stderr]       |                                               ^~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 3.c: In function 'xan_huffman_decode':
+[2025-12-28 15:28:45] [build-stderr] 3.c:31:5: error: unknown type name 'GetBitContext'
+[2025-12-28 15:28:45] [build-stderr]    31 |     GetBitContext gb;
+[2025-12-28 15:28:45] [build-stderr]       |     ^~~~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 3.c:37:16: error: 'AVERROR_INVALIDDATA' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]    37 |         return AVERROR_INVALIDDATA;
+[2025-12-28 15:28:45] [build-stderr]       |                ^~~~~~~~~~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 3.c:37:16: note: each undeclared identifier is reported only once for each function it appears in
+[2025-12-28 15:28:45] [build-stderr] 30.c:13:28: error: unknown type name 'abi_long'
+[2025-12-28 15:28:45] [build-stderr]    13 | print_syscall_ret(int num, abi_long ret)
+[2025-12-28 15:28:45] [build-stderr]       |                            ^~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 31.c:13:8: error: expected ';' before 'void'
+[2025-12-28 15:28:45] [build-stderr]    13 | av_cold void ff_vp8dsp_init_ppc(VP8DSPContext *c)
+[2025-12-28 15:28:45] [build-stderr]       |        ^~~~~
+[2025-12-28 15:28:45] [build-stderr]       |        ;
+[2025-12-28 15:28:45] [build-stderr] 31.c:13:33: error: unknown type name 'VP8DSPContext'
+[2025-12-28 15:28:45] [build-stderr]    13 | av_cold void ff_vp8dsp_init_ppc(VP8DSPContext *c)
+[2025-12-28 15:28:45] [build-stderr]       |                                 ^~~~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 32.c:13:15: error: expected ';' before 'int'
+[2025-12-28 15:28:45] [build-stderr]    13 | static av_cold int ulti_decode_init(AVCodecContext *avctx)
+[2025-12-28 15:28:45] [build-stderr]       |               ^~~~
+[2025-12-28 15:28:45] [build-stderr]       |               ;
+[2025-12-28 15:28:45] [build-stderr] 32.c:13:37: error: unknown type name 'AVCodecContext'
+[2025-12-28 15:28:45] [build-stderr]    13 | static av_cold int ulti_decode_init(AVCodecContext *avctx)
+[2025-12-28 15:28:45] [build-stderr]       |                                     ^~~~~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c: In function 'sh4_translate_init':
+[2025-12-28 15:28:45] [build-stderr] 33.c:57:9: error: 'cpu_gregs' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]    57 |         cpu_gregs[i] = tcg_global_mem_new_i32(cpu_env,
+[2025-12-28 15:28:45] [build-stderr]       |         ^~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:57:9: note: each undeclared identifier is reported only once for each function it appears in
+[2025-12-28 15:28:45] [build-stderr] 33.c:57:47: error: 'cpu_env' undeclared (first use in this function); did you mean 'putenv'?
+[2025-12-28 15:28:45] [build-stderr]    57 |         cpu_gregs[i] = tcg_global_mem_new_i32(cpu_env,
+[2025-12-28 15:28:45] [build-stderr]       |                                               ^~~~~~~
+[2025-12-28 15:28:45] [build-stderr]       |                                               putenv
+[2025-12-28 15:28:45] [build-stderr] In file included from c:\program files\mingw64\x86_64-w64-mingw32\include\stdint.h:32,
+[2025-12-28 15:28:45] [build-stderr]                  from c:\program files\mingw64\lib\gcc\x86_64-w64-mingw32\12.2.0\include\stdint.h:9,
+[2025-12-28 15:28:45] [build-stderr]                  from 33.c:5:
+[2025-12-28 15:28:45] [build-stderr] 33.c:59:56: error: unknown type name 'CPUSH4State'
+[2025-12-28 15:28:45] [build-stderr]    59 |                                               offsetof(CPUSH4State, gregs[i]),
+[2025-12-28 15:28:45] [build-stderr]       |                                                        ^~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:65:54: error: 'TCGv' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]    65 |     memcpy(cpu_gregs + 24, cpu_gregs + 8, 8 * sizeof(TCGv));
+[2025-12-28 15:28:45] [build-stderr]       |                                                      ^~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:69:5: error: 'cpu_pc' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]    69 |     cpu_pc = tcg_global_mem_new_i32(cpu_env,
+[2025-12-28 15:28:45] [build-stderr]       |     ^~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:71:46: error: unknown type name 'CPUSH4State'
+[2025-12-28 15:28:45] [build-stderr]    71 |                                     offsetof(CPUSH4State, pc), "PC");
+[2025-12-28 15:28:45] [build-stderr]       |                                              ^~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:73:5: error: 'cpu_sr' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]    73 |     cpu_sr = tcg_global_mem_new_i32(cpu_env,
+[2025-12-28 15:28:45] [build-stderr]       |     ^~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:75:46: error: unknown type name 'CPUSH4State'
+[2025-12-28 15:28:45] [build-stderr]    75 |                                     offsetof(CPUSH4State, sr), "SR");
+[2025-12-28 15:28:45] [build-stderr]       |                                              ^~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:77:5: error: 'cpu_sr_m' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]    77 |     cpu_sr_m = tcg_global_mem_new_i32(cpu_env,
+[2025-12-28 15:28:45] [build-stderr]       |     ^~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:79:48: error: unknown type name 'CPUSH4State'
+[2025-12-28 15:28:45] [build-stderr]    79 |                                       offsetof(CPUSH4State, sr_m), "SR_M");
+[2025-12-28 15:28:45] [build-stderr]       |                                                ^~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:81:5: error: 'cpu_sr_q' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]    81 |     cpu_sr_q = tcg_global_mem_new_i32(cpu_env,
+[2025-12-28 15:28:45] [build-stderr]       |     ^~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:83:48: error: unknown type name 'CPUSH4State'
+[2025-12-28 15:28:45] [build-stderr]    83 |                                       offsetof(CPUSH4State, sr_q), "SR_Q");
+[2025-12-28 15:28:45] [build-stderr]       |                                                ^~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:85:5: error: 'cpu_sr_t' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]    85 |     cpu_sr_t = tcg_global_mem_new_i32(cpu_env,
+[2025-12-28 15:28:45] [build-stderr]       |     ^~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:87:48: error: unknown type name 'CPUSH4State'
+[2025-12-28 15:28:45] [build-stderr]    87 |                                       offsetof(CPUSH4State, sr_t), "SR_T");
+[2025-12-28 15:28:45] [build-stderr]       |                                                ^~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:89:5: error: 'cpu_ssr' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]    89 |     cpu_ssr = tcg_global_mem_new_i32(cpu_env,
+[2025-12-28 15:28:45] [build-stderr]       |     ^~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:91:47: error: unknown type name 'CPUSH4State'
+[2025-12-28 15:28:45] [build-stderr]    91 |                                      offsetof(CPUSH4State, ssr), "SSR");
+[2025-12-28 15:28:45] [build-stderr]       |                                               ^~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:93:5: error: 'cpu_spc' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]    93 |     cpu_spc = tcg_global_mem_new_i32(cpu_env,
+[2025-12-28 15:28:45] [build-stderr]       |     ^~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:95:47: error: unknown type name 'CPUSH4State'
+[2025-12-28 15:28:45] [build-stderr]    95 |                                      offsetof(CPUSH4State, spc), "SPC");
+[2025-12-28 15:28:45] [build-stderr]       |                                               ^~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:97:5: error: 'cpu_gbr' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]    97 |     cpu_gbr = tcg_global_mem_new_i32(cpu_env,
+[2025-12-28 15:28:45] [build-stderr]       |     ^~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:99:47: error: unknown type name 'CPUSH4State'
+[2025-12-28 15:28:45] [build-stderr]    99 |                                      offsetof(CPUSH4State, gbr), "GBR");
+[2025-12-28 15:28:45] [build-stderr]       |                                               ^~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:101:5: error: 'cpu_vbr' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]   101 |     cpu_vbr = tcg_global_mem_new_i32(cpu_env,
+[2025-12-28 15:28:45] [build-stderr]       |     ^~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:103:47: error: unknown type name 'CPUSH4State'
+[2025-12-28 15:28:45] [build-stderr]   103 |                                      offsetof(CPUSH4State, vbr), "VBR");
+[2025-12-28 15:28:45] [build-stderr]       |                                               ^~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:105:5: error: 'cpu_sgr' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]   105 |     cpu_sgr = tcg_global_mem_new_i32(cpu_env,
+[2025-12-28 15:28:45] [build-stderr]       |     ^~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:107:47: error: unknown type name 'CPUSH4State'
+[2025-12-28 15:28:45] [build-stderr]   107 |                                      offsetof(CPUSH4State, sgr), "SGR");
+[2025-12-28 15:28:45] [build-stderr]       |                                               ^~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:109:5: error: 'cpu_dbr' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]   109 |     cpu_dbr = tcg_global_mem_new_i32(cpu_env,
+[2025-12-28 15:28:45] [build-stderr]       |     ^~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:111:47: error: unknown type name 'CPUSH4State'
+[2025-12-28 15:28:45] [build-stderr]   111 |                                      offsetof(CPUSH4State, dbr), "DBR");
+[2025-12-28 15:28:45] [build-stderr]       |                                               ^~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:113:5: error: 'cpu_mach' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]   113 |     cpu_mach = tcg_global_mem_new_i32(cpu_env,
+[2025-12-28 15:28:45] [build-stderr]       |     ^~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:115:48: error: unknown type name 'CPUSH4State'
+[2025-12-28 15:28:45] [build-stderr]   115 |                                       offsetof(CPUSH4State, mach), "MACH");
+[2025-12-28 15:28:45] [build-stderr]       |                                                ^~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:117:5: error: 'cpu_macl' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]   117 |     cpu_macl = tcg_global_mem_new_i32(cpu_env,
+[2025-12-28 15:28:45] [build-stderr]       |     ^~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:119:48: error: unknown type name 'CPUSH4State'
+[2025-12-28 15:28:45] [build-stderr]   119 |                                       offsetof(CPUSH4State, macl), "MACL");
+[2025-12-28 15:28:45] [build-stderr]       |                                                ^~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:121:5: error: 'cpu_pr' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]   121 |     cpu_pr = tcg_global_mem_new_i32(cpu_env,
+[2025-12-28 15:28:45] [build-stderr]       |     ^~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:123:46: error: unknown type name 'CPUSH4State'
+[2025-12-28 15:28:45] [build-stderr]   123 |                                     offsetof(CPUSH4State, pr), "PR");
+[2025-12-28 15:28:45] [build-stderr]       |                                              ^~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:125:5: error: 'cpu_fpscr' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]   125 |     cpu_fpscr = tcg_global_mem_new_i32(cpu_env,
+[2025-12-28 15:28:45] [build-stderr]       |     ^~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:127:49: error: unknown type name 'CPUSH4State'
+[2025-12-28 15:28:45] [build-stderr]   127 |                                        offsetof(CPUSH4State, fpscr), "FPSCR");
+[2025-12-28 15:28:45] [build-stderr]       |                                                 ^~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:129:5: error: 'cpu_fpul' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]   129 |     cpu_fpul = tcg_global_mem_new_i32(cpu_env,
+[2025-12-28 15:28:45] [build-stderr]       |     ^~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:131:48: error: unknown type name 'CPUSH4State'
+[2025-12-28 15:28:45] [build-stderr]   131 |                                       offsetof(CPUSH4State, fpul), "FPUL");
+[2025-12-28 15:28:45] [build-stderr]       |                                                ^~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:135:5: error: 'cpu_flags' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]   135 |     cpu_flags = tcg_global_mem_new_i32(cpu_env,
+[2025-12-28 15:28:45] [build-stderr]       |     ^~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:137:49: error: unknown type name 'CPUSH4State'
+[2025-12-28 15:28:45] [build-stderr]   137 |                                        offsetof(CPUSH4State, flags), "_flags_");
+[2025-12-28 15:28:45] [build-stderr]       |                                                 ^~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:139:5: error: 'cpu_delayed_pc' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]   139 |     cpu_delayed_pc = tcg_global_mem_new_i32(cpu_env,
+[2025-12-28 15:28:45] [build-stderr]       |     ^~~~~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:141:54: error: unknown type name 'CPUSH4State'
+[2025-12-28 15:28:45] [build-stderr]   141 |                                             offsetof(CPUSH4State, delayed_pc),
+[2025-12-28 15:28:45] [build-stderr]       |                                                      ^~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:145:5: error: 'cpu_delayed_cond' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]   145 |     cpu_delayed_cond = tcg_global_mem_new_i32(cpu_env,
+[2025-12-28 15:28:45] [build-stderr]       |     ^~~~~~~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:147:56: error: unknown type name 'CPUSH4State'
+[2025-12-28 15:28:45] [build-stderr]   147 |                                               offsetof(CPUSH4State,
+[2025-12-28 15:28:45] [build-stderr]       |                                                        ^~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:153:5: error: 'cpu_ldst' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]   153 |     cpu_ldst = tcg_global_mem_new_i32(cpu_env,
+[2025-12-28 15:28:45] [build-stderr]       |     ^~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:155:48: error: unknown type name 'CPUSH4State'
+[2025-12-28 15:28:45] [build-stderr]   155 |                                       offsetof(CPUSH4State, ldst), "_ldst_");
+[2025-12-28 15:28:45] [build-stderr]       |                                                ^~~~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:161:9: error: 'cpu_fregs' undeclared (first use in this function)
+[2025-12-28 15:28:45] [build-stderr]   161 |         cpu_fregs[i] = tcg_global_mem_new_i32(cpu_env,
+[2025-12-28 15:28:45] [build-stderr]       |         ^~~~~~~~~
+[2025-12-28 15:28:45] [build-stderr] 33.c:163:56: error: unknown type name 'CPUSH4State'
+[2025-12-28 15:28:45] [build-stderr]   163 |                                               offsetof(CPUSH4State, fregs[i]),
+[2025-12-28 15:28:45] [build-stderr]       |                                                        ^~~~~~~~~~~
+[2025-12-28 15:28:46] [build-stderr] 34.c:13:1: error: unknown type name 'CPUState'
+[2025-12-28 15:28:46] [build-stderr]    13 | CPUState *ppc440ep_init(ram_addr_t *ram_size, PCIBus **pcip,
+[2025-12-28 15:28:46] [build-stderr]       | ^~~~~~~~
+[2025-12-28 15:28:46] [build-stderr] 34.c:13:25: error: unknown type name 'ram_addr_t'
+[2025-12-28 15:28:46] [build-stderr]    13 | CPUState *ppc440ep_init(ram_addr_t *ram_size, PCIBus **pcip,
+[2025-12-28 15:28:46] [build-stderr]       |                         ^~~~~~~~~~
+[2025-12-28 15:28:46] [build-stderr] 34.c:13:47: error: unknown type name 'PCIBus'
+[2025-12-28 15:28:46] [build-stderr]    13 | CPUState *ppc440ep_init(ram_addr_t *ram_size, PCIBus **pcip,
+[2025-12-28 15:28:46] [build-stderr]       |                                               ^~~~~~
+[2025-12-28 15:28:46] [build-stderr] 35.c:13:25: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'avresample_convert'
+[2025-12-28 15:28:46] [build-stderr]    13 | int attribute_align_arg avresample_convert(AVAudioResampleContext *avr,
+[2025-12-28 15:28:46] [build-stderr]       |                         ^~~~~~~~~~~~~~~~~~
+[2025-12-28 15:28:46] [build-stderr] 36.c:13:1: error: unknown type name 'MigrationState'
+[2025-12-28 15:28:46] [build-stderr]    13 | MigrationState *tcp_start_outgoing_migration(Monitor *mon,
+[2025-12-28 15:28:46] [build-stderr]       | ^~~~~~~~~~~~~~
+[2025-12-28 15:28:46] [build-stderr] 36.c:13:46: error: unknown type name 'Monitor'
+[2025-12-28 15:28:46] [build-stderr]    13 | MigrationState *tcp_start_outgoing_migration(Monitor *mon,
+[2025-12-28 15:28:46] [build-stderr]       |                                              ^~~~~~~
+[2025-12-28 15:28:46] [build-stderr] 37.c:13:8: error: expected ';' before 'int'
+[2025-12-28 15:28:46] [build-stderr]    13 | av_cold int swri_rematrix_init(SwrContext *s){
+[2025-12-28 15:28:46] [build-stderr]       |        ^~~~
+[2025-12-28 15:28:46] [build-stderr]       |        ;
+[2025-12-28 15:28:46] [build-stderr] 37.c:13:32: error: unknown type name 'SwrContext'
+[2025-12-28 15:28:46] [build-stderr]    13 | av_cold int swri_rematrix_init(SwrContext *s){
+[2025-12-28 15:28:46] [build-stderr]       |                                ^~~~~~~~~~
+[2025-12-28 15:28:46] [build-stderr] 38.c:13:29: error: unknown type name 'AVFormatContext'
+[2025-12-28 15:28:46] [build-stderr]    13 | static int film_read_header(AVFormatContext *s,
+[2025-12-28 15:28:46] [build-stderr]       |                             ^~~~~~~~~~~~~~~
+[2025-12-28 15:28:46] [build-stderr] 38.c:15:29: error: unknown type name 'AVFormatParameters'
+[2025-12-28 15:28:46] [build-stderr]    15 |                             AVFormatParameters *ap)
+[2025-12-28 15:28:46] [build-stderr]       |                             ^~~~~~~~~~~~~~~~~~
+[2025-12-28 15:28:46] [build-stderr] 39.c:13:21: error: unknown type name 'DisplayChangeListener'
+[2025-12-28 15:28:46] [build-stderr]    13 | void gd_egl_scanout(DisplayChangeListener *dcl,
+[2025-12-28 15:28:46] [build-stderr]       |                     ^~~~~~~~~~~~~~~~~~~~~
+[2025-12-28 15:28:46] [build-stderr] 39.c:15:42: error: unknown type name 'bool'
+[2025-12-28 15:28:46] [build-stderr]    15 |                     uint32_t backing_id, bool backing_y_0_top,
+[2025-12-28 15:28:46] [build-stderr]       |                                          ^~~~
+[2025-12-28 15:28:46] [build-stderr] 39.c:7:1: note: 'bool' is defined in header '<stdbool.h>'; did you forget to '#include <stdbool.h>'?
+[2025-12-28 15:28:46] [build-stderr]     6 | #include <stddef.h>
+[2025-12-28 15:28:46] [build-stderr]   +++ |+#include <stdbool.h>
+[2025-12-28 15:28:46] [build-stderr]     7 | 
+[2025-12-28 15:28:47] [build-stderr] 4.c:13:26: error: unknown type name 'SnowContext'
+[2025-12-28 15:28:47] [build-stderr]    13 | static int decode_blocks(SnowContext *s){
+[2025-12-28 15:28:47] [build-stderr]       |                          ^~~~~~~~~~~
+[2025-12-28 15:28:47] [build-stderr] 40.c:13:19: error: unknown type name 'KVMState'
+[2025-12-28 15:28:47] [build-stderr]    13 | int kvm_arch_init(KVMState *s)
+[2025-12-28 15:28:47] [build-stderr]       |                   ^~~~~~~~
+[2025-12-28 15:28:47] [build-stderr] 41.c:13:8: error: expected ';' before 'static'
+[2025-12-28 15:28:47] [build-stderr]    13 | av_cold static int auto_matrix(SwrContext *s)
+[2025-12-28 15:28:47] [build-stderr]       |        ^~~~~~~
+[2025-12-28 15:28:47] [build-stderr]       |        ;
+[2025-12-28 15:28:47] [build-stderr] 41.c:13:32: error: unknown type name 'SwrContext'
+[2025-12-28 15:28:47] [build-stderr]    13 | av_cold static int auto_matrix(SwrContext *s)
+[2025-12-28 15:28:47] [build-stderr]       |                                ^~~~~~~~~~
+[2025-12-28 15:28:47] [build-stderr] 42.c:13:26: error: unknown type name 'CeltFrame'
+[2025-12-28 15:28:47] [build-stderr]    13 | void ff_celt_quant_bands(CeltFrame *f, OpusRangeCoder *rc)
+[2025-12-28 15:28:47] [build-stderr]       |                          ^~~~~~~~~
+[2025-12-28 15:28:47] [build-stderr] 42.c:13:40: error: unknown type name 'OpusRangeCoder'
+[2025-12-28 15:28:47] [build-stderr]    13 | void ff_celt_quant_bands(CeltFrame *f, OpusRangeCoder *rc)
+[2025-12-28 15:28:47] [build-stderr]       |                                        ^~~~~~~~~~~~~~
+[2025-12-28 15:28:47] [build-stderr] 43.c:13:29: error: unknown type name 'AVFormatContext'
+[2025-12-28 15:28:47] [build-stderr]    13 | static int v4l2_read_header(AVFormatContext *s1)
+[2025-12-28 15:28:47] [build-stderr]       |                             ^~~~~~~~~~~~~~~
+[2025-12-28 15:28:47] [build-stderr] 44.c:13:29: error: unknown type name 'SANMVideoContext'
+[2025-12-28 15:28:47] [build-stderr]    13 | static void destroy_buffers(SANMVideoContext *ctx)
+[2025-12-28 15:28:47] [build-stderr]       |                             ^~~~~~~~~~~~~~~~
+[2025-12-28 15:28:47] [build-stderr] 45.c:15:54: error: unknown type name 'PutBitContext'
+[2025-12-28 15:28:47] [build-stderr]    15 |                                                      PutBitContext *pb, const float *in, float *out,
+[2025-12-28 15:28:47] [build-stderr]       |                                                      ^~~~~~~~~~~~~
+[2025-12-28 15:28:48] [build-stderr] 46.c:13:29: error: unknown type name 'AVCodecContext'
+[2025-12-28 15:28:48] [build-stderr]    13 | static int pcx_decode_frame(AVCodecContext *avctx, void *data, int *got_frame,
+[2025-12-28 15:28:48] [build-stderr]       |                             ^~~~~~~~~~~~~~
+[2025-12-28 15:28:48] [build-stderr] 46.c:15:29: error: unknown type name 'AVPacket'
+[2025-12-28 15:28:48] [build-stderr]    15 |                             AVPacket *avpkt)
+[2025-12-28 15:28:48] [build-stderr]       |                             ^~~~~~~~
+[2025-12-28 15:28:48] [build-stderr] 47.c:13:37: error: unknown type name 'OMAPI2C'
+[2025-12-28 15:28:48] [build-stderr]    13 | static void omap_i2c_set_slave_addr(OMAPI2C *s, uint8_t addr)
+[2025-12-28 15:28:48] [build-stderr]       |                                     ^~~~~~~
+[2025-12-28 15:28:48] [build-stderr] 49.c:13:36: error: unknown type name 'AVCodecContext'
+[2025-12-28 15:28:48] [build-stderr]    13 | static void adpcm_compress_trellis(AVCodecContext *avctx,
+[2025-12-28 15:28:48] [build-stderr]       |                                    ^~~~~~~~~~~~~~
+[2025-12-28 15:28:48] [build-stderr] 49.c:17:36: error: unknown type name 'ADPCMChannelStatus'
+[2025-12-28 15:28:48] [build-stderr]    17 |                                    ADPCMChannelStatus *c, int n, int stride)
+[2025-12-28 15:28:48] [build-stderr]       |                                    ^~~~~~~~~~~~~~~~~~
+[2025-12-28 15:28:48] [build-stderr] 49.c:163:35: error: stray '##' in program
+[2025-12-28 15:28:48] [build-stderr]   163 |                         goto next_##NAME;\
+[2025-12-28 15:28:48] [build-stderr]       |                                   ^~
+[2025-12-28 15:28:48] [build-stderr] 49.c:191:35: error: stray '##' in program
+[2025-12-28 15:28:48] [build-stderr]   191 |                         goto next_##NAME;\
+[2025-12-28 15:28:48] [build-stderr]       |                                   ^~
+[2025-12-28 15:28:48] [build-stderr] 49.c:209:39: error: stray '##' in program
+[2025-12-28 15:28:48] [build-stderr]   209 |                             goto next_##NAME;\
+[2025-12-28 15:28:48] [build-stderr]       |                                       ^~
+[2025-12-28 15:28:48] [build-stderr] 49.c:261:26: error: stray '##' in program
+[2025-12-28 15:28:48] [build-stderr]   261 |                     next_##NAME:;
+[2025-12-28 15:28:48] [build-stderr]       |                          ^~
+[2025-12-28 15:28:48] [build-stderr] 5.c:13:1: error: unknown type name 'DVMuxContext'
+[2025-12-28 15:28:48] [build-stderr]    13 | DVMuxContext* dv_init_mux(AVFormatContext* s)
+[2025-12-28 15:28:48] [build-stderr]       | ^~~~~~~~~~~~
+[2025-12-28 15:28:48] [build-stderr] 5.c:13:27: error: unknown type name 'AVFormatContext'
+[2025-12-28 15:28:48] [build-stderr]    13 | DVMuxContext* dv_init_mux(AVFormatContext* s)
+[2025-12-28 15:28:48] [build-stderr]       |                           ^~~~~~~~~~~~~~~
+[2025-12-28 15:28:49] [build-stderr] 6.c:13:28: error: unknown type name 'CPUPPCState'
+[2025-12-28 15:28:49] [build-stderr]    13 | static void init_excp_620 (CPUPPCState *env)
+[2025-12-28 15:28:49] [build-stderr]       |                            ^~~~~~~~~~~
+[2025-12-28 15:28:49] [build-stderr] 7.c:13:40: error: unknown type name 'CPUMIPSState'
+[2025-12-28 15:28:49] [build-stderr]    13 | static int decode_extended_mips16_opc (CPUMIPSState *env, DisasContext *ctx,
+[2025-12-28 15:28:49] [build-stderr]       |                                        ^~~~~~~~~~~~
+[2025-12-28 15:28:49] [build-stderr] 7.c:13:59: error: unknown type name 'DisasContext'
+[2025-12-28 15:28:49] [build-stderr]    13 | static int decode_extended_mips16_opc (CPUMIPSState *env, DisasContext *ctx,
+[2025-12-28 15:28:49] [build-stderr]       |                                                           ^~~~~~~~~~~~
+[2025-12-28 15:28:49] [build-stderr] 8.c:13:27: error: unknown type name 'IVI5DecContext'
+[2025-12-28 15:28:49] [build-stderr]    13 | static int decode_mb_info(IVI5DecContext *ctx, IVIBandDesc *band,
+[2025-12-28 15:28:49] [build-stderr]       |                           ^~~~~~~~~~~~~~
+[2025-12-28 15:28:49] [build-stderr] 8.c:13:48: error: unknown type name 'IVIBandDesc'
+[2025-12-28 15:28:49] [build-stderr]    13 | static int decode_mb_info(IVI5DecContext *ctx, IVIBandDesc *band,
+[2025-12-28 15:28:49] [build-stderr]       |                                                ^~~~~~~~~~~
+[2025-12-28 15:28:49] [build-stderr] 8.c:15:27: error: unknown type name 'IVITile'
+[2025-12-28 15:28:49] [build-stderr]    15 |                           IVITile *tile, AVCodecContext *avctx)
+[2025-12-28 15:28:49] [build-stderr]       |                           ^~~~~~~
+[2025-12-28 15:28:49] [build-stderr] 8.c:15:42: error: unknown type name 'AVCodecContext'
+[2025-12-28 15:28:49] [build-stderr]    15 |                           IVITile *tile, AVCodecContext *avctx)
+[2025-12-28 15:28:49] [build-stderr]       |                                          ^~~~~~~~~~~~~~
+[2025-12-28 15:28:49] [build-stderr] 9.c:13:21: error: unknown type name 'QEMUFile'
+[2025-12-28 15:28:49] [build-stderr]    13 | void qemu_file_skip(QEMUFile *f, int size)
+[2025-12-28 15:28:49] [build-stderr]       |                     ^~~~~~~~
+[2025-12-28 15:28:53] [ERROR] Spawned process exited abnormally (code 1; tried to run: [C:\codeql\tools\win64\tracer.exe, C:\codeql\tools\win64\runner.exe, cmd.exe, /C, type, NUL, &&, gcc, -c, -w, *.c])
+[2025-12-28 15:28:53] Exception caught at top level: Exit status 1 from command: [C:\codeql\tools\win64\runner.exe, cmd.exe, /C, type, NUL, &&, gcc, -c, -w, *.c]
+                      com.semmle.cli2.Commandline.executeAndCheckResult(Commandline.java:170)
+                      com.semmle.cli2.Commandline.runWithoutReturn(Commandline.java:123)
+                      com.semmle.cli2.database.DatabaseProcessCommandCommon.executeSubcommand(DatabaseProcessCommandCommon.java:227)
+                      com.semmle.cli2.database.TraceCommandCommand.executeSubcommand(TraceCommandCommand.java:126)
+                      com.semmle.cli2.picocli.SubcommandCommon.lambda$executeSubcommandWithMessages$5(SubcommandCommon.java:892)
+                      com.semmle.cli2.picocli.SubcommandCommon.withCompilationMessages(SubcommandCommon.java:444)
+                      com.semmle.cli2.picocli.SubcommandCommon.executeSubcommandWithMessages(SubcommandCommon.java:890)
+                      com.semmle.cli2.picocli.PlumbingRunner.run(PlumbingRunner.java:119)
+                      com.semmle.cli2.picocli.SubcommandCommon.runPlumbingInProcess(SubcommandCommon.java:201)
+                      com.semmle.cli2.database.CreateCommand.executeSubcommand(CreateCommand.java:185)
+                      com.semmle.cli2.picocli.SubcommandCommon.lambda$executeSubcommandWithMessages$5(SubcommandCommon.java:892)
+                      com.semmle.cli2.picocli.SubcommandCommon.withCompilationMessages(SubcommandCommon.java:444)
+                      com.semmle.cli2.picocli.SubcommandCommon.executeSubcommandWithMessages(SubcommandCommon.java:890)
+                      com.semmle.cli2.picocli.SubcommandCommon.toplevelMain(SubcommandCommon.java:777)
+                      com.semmle.cli2.picocli.SubcommandCommon.call(SubcommandCommon.java:757)
+                      com.semmle.cli2.picocli.SubcommandMaker.runMain(SubcommandMaker.java:238)
+                      com.semmle.cli2.picocli.SubcommandMaker.runMain(SubcommandMaker.java:259)
+                      com.semmle.cli2.CodeQL.main(CodeQL.java:113)
